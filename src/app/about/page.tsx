@@ -2,9 +2,6 @@
 
 import Link from "next/link";
 import { Button } from "~/components/ui/button"
-import { CreatePost } from "~/app/_components/create-post";
-import { getServerAuthSession } from "~/server/auth";
-import { api } from "~/trpc/server";
 import foto1 from "~/img/1.jpeg"
 import foto2 from "~/img/2.jpg"
 import Autoplay from "embla-carousel-autoplay"
@@ -15,8 +12,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "~/components/ui/carousel"
 
 

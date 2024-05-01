@@ -3,79 +3,11 @@ import { Button } from "~/components/ui/button"
 import { CreatePost } from "~/app/_components/create-post";
 import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
-import foto1 from "~/img/portfolio-1.jpg"
-import foto2 from "~/img/portfolio-2.jpg"
-import foto3 from "~/img/portfolio-3.jpg"
-import foto4 from "~/img/portfolio-4.jpg"
-import foto5 from "~/img/portfolio-5.jpg"
-import foto6 from "~/img/portfolio-6.jpg"
-import foto7 from "~/img/portfolio-7.jpg"
-import foto8 from "~/img/portfolio-8.jpg"
-import foto9 from "~/img/portfolio-9.jpg"
-import foto10 from "~/img/portfolio-10.jpg"
-import foto11 from "~/img/portfolio-11.jpg"
-import foto12 from "~/img/portfolio-12.jpg"
 import * as React from "react"
 import Image from "next/image"
 import { ScrollArea, ScrollBar } from "~/components/ui/scroll-area"
+import { works } from './works';
 
-
-export interface Artwork {
-  artist: string
-  art: string
-}
-
-export const works: Artwork[] = [
-  {
-    artist: "Ornella Binni",
-    art: foto1.src,
-  },
-  {
-    artist: "Tom Byrom",
-    art: foto2.src,
-  },
-  {
-    artist: "Vladimir Malyavko",
-    art: foto3.src,
-  },
-  {
-    artist: "Ornella Binni",
-    art: foto4.src,
-  },
-  {
-    artist: "Tom Byrom",
-    art: foto5.src,
-  },
-  {
-    artist: "Vladimir Malyavko",
-    art: foto6.src,
-  },
-  {
-    artist: "Ornella Binni",
-    art: foto7.src,
-  },
-  {
-    artist: "Tom Byrom",
-    art: foto8.src,
-  },
-  {
-    artist: "Vladimir Malyavko",
-    art: foto9.src,
-  },
-  {
-    artist: "Vladimir Malyavko",
-    art: foto10.src,
-  },
-  {
-    artist: "Ornella Binni",
-    art: foto11.src,
-  },
-  {
-    artist: "Tom Byrom",
-    art: foto12.src,
-  },
-  
-]
 
 export default async function AboutPage(){
     const hello = await api.post.hello({ text: "from tRPC" });
