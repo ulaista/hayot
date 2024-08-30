@@ -48,7 +48,7 @@ export default function AboutPage() {
                 <br /> I believe in the power of knowledge and education, and{" "}
                 <br />I am ready to share my experience and expertise.
               </h2>
-              <Link href={"/portfolio"}>
+              <Link href={"#portfolio"}>
                 <Button className="mt-7 bg-gradient-to-r from-slate-900 to-slate-800 antialiased">
                   My portfolio
                 </Button>
