@@ -15,7 +15,7 @@ export default function HeroSection() {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <div className="flex flex-col items-center justify-center p-4 text-center sm:w-1/2">
+      <div className="bg-[url('/hero-bg.jpg')] bg-cover bg-center bg-no-repeat md:bg-none flex flex-col items-center justify-center p-4 text-center sm:w-1/2">
         <motion.div
           className="w-full backdrop-brightness-50 p-1 xl:w-8/12"
           initial={{ y: -50, opacity: 0 }}
@@ -29,14 +29,14 @@ export default function HeroSection() {
           <Button
             className="mt-3 hidden bg-gradient-to-r from-slate-900 to-slate-800 text-lg text-white sm:inline-flex"
             variant="ghost"
-          >{`My youtube chanel ->`}</Button>
+          ><a href="https://youtube.com/@hayot_istamov?feature=shared" target='_blank'>{`My youtube chanel ->`}</a></Button>
           <Button
             className="mt-3 inline-flex bg-gradient-to-r from-slate-900 to-slate-800 text-lg text-white sm:hidden"
             variant="secondary"
           >{`My youtube chanel`}</Button>
         </motion.div>
       </div>
-      <div className="hidden w-1/2 items-center justify-center p-4 sm:flex">
+      <div className="hidden w-1/2 items-center justify-center p-4 md:flex">
         <Image
           src={foto1.src}
           alt="Hero Image"

@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 // import { Link as ScrollLink } from 'react-scroll';
 import HeroSection from "./_components/HeroSection";
+import Link from "next/link";
 
 export default function Home() {
   // const { ref, inView } = useInView({
@@ -17,7 +18,7 @@ export default function Home() {
   // });
 
   return (
-    <div className="bg-[url('/hero-bg.jpg')] bg-cover bg-center bg-no-repeat">
+    <div className="">
       <main className="flex flex-col items-center justify-center text-white sm:bg-black">
         {/* <motion.section
           id="hero"
@@ -67,6 +68,12 @@ export default function Home() {
         <HeroSection />
         <AboutPage />
         <PortfolioPage />
+        <section className="w-full h-44 bg-black">
+          <div className="flex pt-10 justify-center items-center text-center text-xl">
+            <Link href="/contact" className="text-white hover:text-stone-500">
+             Checkout my contacts and social media profiles</Link>
+          </div>
+        </section>
       </main>
     </div>
   );
