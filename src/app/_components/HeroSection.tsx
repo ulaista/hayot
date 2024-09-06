@@ -33,7 +33,7 @@ export default function HeroSection() {
           <Button
             className="mt-3 inline-flex bg-gradient-to-r from-slate-900 to-slate-800 text-lg text-white sm:hidden"
             variant="secondary"
-          >{`My youtube chanel`}</Button>
+          ><a href="https://youtube.com/@hayot_istamov?feature=shared" target='_blank'>{`My youtube chanel ->`}</a></Button>
         </motion.div>
       </div>
       <div className="hidden w-1/2 items-center justify-center p-4 md:flex">
