@@ -21,7 +21,7 @@ jobs:
     - name: Check Python Version
       run: python --version
     - name: Run ai-sast-tool
-      run: python main.py .
+      run: python3.12 /ai-sast-tool/main.py /github/workspace
       env:
         GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
     - name: Upload report.html
