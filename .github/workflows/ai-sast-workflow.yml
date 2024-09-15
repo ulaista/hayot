@@ -10,7 +10,7 @@ jobs:
   scan:
     runs-on: ubuntu-latest
     container:
-      image: ayvazbudapeshtov/ai-sast-tool:1.1.1
+      image: ayvazbudapeshtov/ai-sast-tool:dev
     steps:
     - uses: actions/checkout@v4
     - name: Run ai-sast-tool
