@@ -11,24 +11,27 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ayvazbudapeshtov/ai-sast-tool:1.1.1
-      options: --workdir /github/workspace
+      options: --workdir /ai-sast-tool
     steps:
     - uses: actions/checkout@v4
     - name: Show Current Directory
       run: pwd
-    - name: List Files
+    - name: List Files in Current Directory
       run: ls -al
+    - name: List Files in /github/workspace
+      run: ls -al /github/workspace
     - name: Check Python Version
-      run: python --version
+      run: python3 --version
     - name: Run ai-sast-tool
-      run: python3.12 /ai-sast-tool/main.py /github/workspace
+      working-directory: /ai-sast-tool
+      run: python3 main.py /github/workspace
       env:
         GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
     - name: Upload report.html
       uses: actions/upload-artifact@v4
       with:
           name: report
-          path: report.html
+          path: /ai-sast-tool/report.html
 
   ngrok-up:
     needs: scan
