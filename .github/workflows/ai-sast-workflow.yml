@@ -11,14 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ayvazbudapeshtov/ai-sast-tool:1.1.1
-      options: --workdir /ai-sast-tool
     steps:
     - uses: actions/checkout@v4
     - name: Show Current Directory
+      run: pwd
+    - name: List Files in Current Directory
       run: export PROJECT_DIR=pwd
     - name: Run ai-sast-tool
       working-directory: /ai-sast-tool
-      run: python3 main.py $PROJECT_DIR
+      run: python3 main.py ${{ github.workspace }}
       env:
         GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
     - name: Upload report.html
