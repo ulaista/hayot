@@ -13,12 +13,6 @@ jobs:
       image: ayvazbudapeshtov/ai-sast-tool:1.1.1
     steps:
     - uses: actions/checkout@v4
-    - name: Show Current Directory
-      run: pwd
-    - name: List Files in Current Directory
-      run: ls -al
-    - name: List Files in $GITHUB_WORKSPACE
-      run: ls -al $GITHUB_WORKSPACE
     - name: Run ai-sast-tool
       working-directory: /ai-sast-tool
       run: python3 main.py $GITHUB_WORKSPACE
