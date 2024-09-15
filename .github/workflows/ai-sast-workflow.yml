@@ -18,8 +18,6 @@ jobs:
       run: pwd
     - name: List Files in Current Directory
       run: ls -al
-    - name: List Files in /github/workspace
-      run: ls -al /github/workspace
     - name: Check Python Version
       run: python3 --version
     - name: Run ai-sast-tool
