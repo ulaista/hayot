@@ -22,7 +22,7 @@ jobs:
       run: python3 --version
     - name: Run ai-sast-tool
       working-directory: /ai-sast-tool
-      run: python3 main.py /github/workspace
+      run: python3 main.py ${{ github.workspace }}
       env:
         GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
     - name: Upload report.html
