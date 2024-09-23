@@ -35,9 +35,9 @@ export default function AboutPage() {
   }, [api]);
 
   return (
-    <div id="about" className=" bg-[url('/cta-bg.jpg')] bg-cover bg-center bg-no-repeat">
+    <div id="about" className="max-h-screen bg-[url('/cta-bg.jpg')] bg-cover bg-center bg-no-repeat">
       <main className="flex min-h-screen flex-col items-center justify-center text-white backdrop-brightness-[27%] md:backdrop-brightness-[6%]">
-        <section id="about" className="md:flex min-h-screen w-full">
+        <section id="about" className="flex min-h-screen w-full">
           <div className="mt-36 flex flex-col items-center p-4 brightness-[125%] md:w-1/2">
             <div className="w-full xl:w-8/12">
               <h1 className="text-3xl antialiased">About me</h1>
@@ -55,7 +55,7 @@ export default function AboutPage() {
               </Link>
             </div>
           </div>
-          <div className="md:w-1/2 items-center justify-center rounded-xl p-4 pl-10 md:flex">
+          <div className="hidden w-1/2 items-center justify-center rounded-xl p-4 pl-10 md:flex">
             <Carousel
               plugins={[
                 Autoplay({

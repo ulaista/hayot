@@ -69,9 +69,13 @@ export default function Home() {
         <AboutPage />
         <PortfolioPage />
         <section className="w-full h-44 bg-black">
-          <div className="flex pt-10 justify-center items-center text-center text-xl">
+          <div className="hidden md:flex pt-10 justify-center items-center text-center text-xl">
             <Link href="/contact" className="text-white hover:text-stone-500">
              Checkout my contacts and social media profiles</Link>
+          </div>
+          <div className="md:hidden flex pt-10 justify-center items-center text-center text-xl">
+            <Link href="/contact" className="text-white hover:text-stone-500">
+             Checkout my contacts</Link>
           </div>
         </section>
       </main>

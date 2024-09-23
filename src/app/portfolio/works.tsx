@@ -1,3 +1,5 @@
+import foto13 from "~/img/portfolio-13.jpg";
+import foto14 from "~/img/portfolio-14.jpg";
 import foto1 from "~/img/portfolio-1.jpg";
 import foto2 from "~/img/portfolio-2.jpg";
 import foto3 from "~/img/portfolio-3.jpg";
@@ -15,6 +17,14 @@ export interface Artwork {
   art: string;
 }
 export const works: Artwork[] = [
+  {
+    artist: "Ornella Binni",
+    art: foto13.src,
+  },
+  {
+    artist: "Ornella Binni",
+    art: foto14.src,
+  },
   {
     artist: "Ornella Binni",
     art: foto1.src,
