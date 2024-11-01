@@ -16,8 +16,8 @@ export default async function AboutPage() {
         {/* Phone Contact */}
         <div className="flex items-center space-x-2 pb-6 justify-center md:justify-start">
           <FaPhoneAlt className="text-sky-300" />
-          <a href={`tel:${"+998 90 123 45 67"}`} className="text-white">
-            +998 90 123 45 67
+          <a href={`tel:${"+998 93 544 85 23"}`} className="text-white">
+            +998 93 544 85 23
           </a>
         </div>
         
