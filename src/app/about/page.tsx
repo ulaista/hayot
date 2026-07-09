@@ -5,9 +5,7 @@ import { Button } from "~/components/ui/button";
 import foto1 from "~/img/1.jpeg";
 import foto2 from "~/img/2.jpg";
 import Autoplay from "embla-carousel-autoplay";
-
-import { type CarouselApi } from "~/components/ui/carousel";
-import { useEffect, useState } from "react";
+import Image from "next/image";
 import {
   Carousel,
   CarouselContent,
@@ -15,27 +13,11 @@ import {
 } from "~/components/ui/carousel";
 
 export default function AboutPage() {
-  // const hello = await api.post.hello({ text: "from tRPC" });
-  // const session = await getServerAuthSession();
-  const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!api) {
-      return;
-    }
-
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap() + 1);
-
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1);
-    });
-  }, [api]);
-
   return (
-    <div id="about" className="max-h-screen bg-[url('/cta-bg.jpg')] bg-cover bg-center bg-no-repeat">
+    <div
+      id="about"
+      className="max-h-screen bg-[url('/cta-bg.jpg')] bg-cover bg-center bg-no-repeat"
+    >
       <main className="flex min-h-screen flex-col items-center justify-center text-white backdrop-brightness-[27%] md:backdrop-brightness-[6%]">
         <section id="about" className="flex min-h-screen w-full">
           <div className="mt-36 flex flex-col items-center p-4 brightness-[125%] md:w-1/2">
@@ -62,26 +44,33 @@ export default function AboutPage() {
                   delay: 2000,
                 }),
               ]}
-              setApi={setApi}
-              className=""
             >
               <CarouselContent>
                 <CarouselItem>
-                  <img
-                    src={foto1.src}
-                    className="h-[27rem] md:h-[36rem] rounded-xl object-cover"
+                  <Image
+                    src={foto1}
+                    className="h-[27rem] rounded-xl object-cover md:h-[36rem]"
+                    alt="Hayot Istamov portrait"
+                    width={576}
+                    height={576}
                   />
                 </CarouselItem>
                 <CarouselItem>
-                  <img
-                    src={foto2.src}
-                    className="h-[27rem] md:h-[36rem] rounded-xl object-cover"
+                  <Image
+                    src={foto2}
+                    className="h-[27rem] rounded-xl object-cover md:h-[36rem]"
+                    alt="Hayot Istamov speaking"
+                    width={576}
+                    height={576}
                   />
                 </CarouselItem>
                 <CarouselItem>
-                  <img
-                    src={foto1.src}
-                    className="h-[27rem] md:h-[36rem] rounded-xl object-cover"
+                  <Image
+                    src={foto1}
+                    className="h-[27rem] rounded-xl object-cover md:h-[36rem]"
+                    alt="Hayot Istamov portrait"
+                    width={576}
+                    height={576}
                   />
                 </CarouselItem>
               </CarouselContent>
