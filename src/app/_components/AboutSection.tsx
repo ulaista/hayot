@@ -1,12 +1,11 @@
 // components/AboutSection.tsx
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import Image from 'next/image';
-import { Button } from '~/components/ui/button';
-import foto1 from '~/img/1.jpeg';
-import foto2 from '~/img/2.jpg';
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import Image from "next/image";
+import { Button } from "~/components/ui/button";
+import foto1 from "~/img/1.jpeg";
 
 export default function AboutSection() {
   const { ref, inView } = useInView({
@@ -30,8 +29,8 @@ export default function AboutSection() {
             My mission is to inspire and educate people,
             <br /> helping them develop and reach new heights.
             <br />
-            <br /> I believe in the power of knowledge and education, and{" "}
-            <br />I am ready to share my experience and expertise.
+            <br /> I believe in the power of knowledge and education, and <br />
+            I am ready to share my experience and expertise.
           </h2>
           <Button className="mt-7 bg-gradient-to-r from-slate-900 to-slate-800 antialiased">
             My portfolio
