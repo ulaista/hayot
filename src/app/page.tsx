@@ -2,7 +2,7 @@
 
 import Image, { type StaticImageData } from "next/image";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import awardPhoto from "~/img/state-award.jpg";
 import chainReaction from "~/img/portfolio-1.jpg";
@@ -68,6 +68,8 @@ const reveal = {
   visible: { opacity: 1, y: 0 },
 };
 
+const sectionIds = ["top", "story", "path", "award", "proofs", "science", "contact"];
+
 function ArrowDown() {
   return (
     <svg aria-hidden="true" viewBox="0 0 32 32" className="h-5 w-5 fill-none stroke-current">
@@ -76,17 +78,33 @@ function ArrowDown() {
   );
 }
 
+function useNarrowViewport() {
+  const [isNarrow, setIsNarrow] = useState(false);
+
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 900px)");
+    const update = () => setIsNarrow(query.matches);
+
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
+  return isNarrow;
+}
+
 function TimelineCard({ item, index }: { item: (typeof milestones)[number]; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 85%", "end 45%"] });
   const prefersReducedMotion = useReducedMotion();
+  const isNarrow = useNarrowViewport();
   const x = useTransform(scrollYProgress, [0, 1], [index % 2 === 0 ? -36 : 36, 0]);
   const opacity = useTransform(scrollYProgress, [0, 0.45], [0.2, 1]);
 
   return (
     <motion.article
       ref={ref}
-      style={prefersReducedMotion ? undefined : { x, opacity }}
+      style={prefersReducedMotion ? undefined : isNarrow ? { opacity } : { x, opacity }}
       className="timeline-card"
     >
       <div className="timeline-meta">
@@ -112,6 +130,47 @@ export default function Home() {
   const heroY = useTransform(heroProgress, [0, 1], [0, 160]);
   const heroScale = useTransform(heroProgress, [0, 1], [1, 1.08]);
   const awardY = useTransform(awardProgress, [0, 1], [-60, 60]);
+
+  useEffect(() => {
+    const isTypingTarget = (target: EventTarget | null) => {
+      if (!(target instanceof HTMLElement)) return false;
+      const tagName = target.tagName.toLowerCase();
+      return target.isContentEditable || tagName === "input" || tagName === "textarea" || tagName === "select";
+    };
+
+    const scrollToSection = (direction: 1 | -1) => {
+      const sections = sectionIds
+        .map((id) => document.getElementById(id))
+        .filter((section): section is HTMLElement => Boolean(section));
+      if (!sections.length) return;
+
+      const anchor = window.scrollY + window.innerHeight * 0.42;
+      const currentIndex = sections.reduce((closestIndex, section, index) => {
+        const currentDistance = Math.abs(section.offsetTop - anchor);
+        const closestDistance = Math.abs(sections[closestIndex]!.offsetTop - anchor);
+        return currentDistance < closestDistance ? index : closestIndex;
+      }, 0);
+      const nextIndex = Math.min(Math.max(currentIndex + direction, 0), sections.length - 1);
+
+      sections[nextIndex]?.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey || event.shiftKey || isTypingTarget(event.target)) return;
+      if (event.target instanceof HTMLElement && event.target.closest(".proofs-track")) return;
+      if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+        event.preventDefault();
+        scrollToSection(1);
+      }
+      if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+        event.preventDefault();
+        scrollToSection(-1);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [prefersReducedMotion]);
 
   return (
     <main>
@@ -184,7 +243,7 @@ export default function Home() {
           <h2>Факты говорят<br />точнее громких слов.</h2>
           <p>Каждый документ — отдельный этап: олимпиада, исследование, стипендия или инженерная задача.</p>
         </div>
-        <div className="proofs-track" aria-label="Документы о достижениях">
+        <div className="proofs-track" aria-label="Документы о достижениях" tabIndex={0}>
           {proofs.map((proof, index) => (
             <motion.figure
               key={`${proof.year}-${proof.title}`}
@@ -215,7 +274,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <footer className="site-footer">
+      <footer id="contact" className="site-footer">
         <div className="page-shell footer-grid">
           <div><p className="eyebrow">Связь</p><h2>Продолжим<br />разговор.</h2></div>
           <div className="footer-links">
