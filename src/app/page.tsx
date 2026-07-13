@@ -243,7 +243,19 @@ export default function Home() {
           <h2>Факты говорят<br />точнее громких слов.</h2>
           <p>Каждый документ — отдельный этап: олимпиада, исследование, стипендия или инженерная задача.</p>
         </div>
-        <div className="proofs-track" aria-label="Документы о достижениях" tabIndex={0}>
+        <div
+          className="proofs-track"
+          aria-label="Документы о достижениях"
+          tabIndex={0}
+          onKeyDown={(event) => {
+            if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+            event.preventDefault();
+            event.currentTarget.scrollBy({
+              left: event.key === "ArrowRight" ? 340 : -340,
+              behavior: prefersReducedMotion ? "auto" : "smooth",
+            });
+          }}
+        >
           {proofs.map((proof, index) => (
             <motion.figure
               key={`${proof.year}-${proof.title}`}
