@@ -22,7 +22,7 @@ main > section, main > footer { scroll-snap-align: start; scroll-snap-stop: alwa
 .eyebrow { max-width: 100%; margin: 0; font-size: 11px; line-height: 1.2; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; overflow-wrap: anywhere; }
 .scroll-progress { position: fixed; z-index: 100; top: 0; left: 0; width: 100%; height: 3px; background: var(--acid); transform-origin: left; }
 
-.site-header { position: fixed; z-index: 180; top: 0; left: 0; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; width: 100%; height: 78px; padding: 0 32px; color: white; transition: height .35s ease, color .35s ease, background .35s ease, border-color .35s ease; border-bottom: 1px solid rgba(255,255,255,.2); }
+.site-header { position: fixed; z-index: 1000; isolation: isolate; top: 0; left: 0; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; width: 100%; height: 78px; padding: 0 32px; color: white; transition: height .35s ease, color .35s ease, background .35s ease, border-color .35s ease; border-bottom: 1px solid rgba(255,255,255,.2); }
 .site-header.is-scrolled { height: 64px; color: var(--ink); background: rgba(250,248,242,.88); border-color: var(--line); backdrop-filter: blur(18px); }
 .site-logo { justify-self: start; font-size: 23px; font-weight: 800; letter-spacing: -.08em; }
 .site-logo span { color: var(--acid); }
@@ -92,17 +92,19 @@ main > section, main > footer { scroll-snap-align: start; scroll-snap-stop: alwa
 .proof-card figcaption span { color: rgba(16,24,32,.54); font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
 .proof-card figcaption p { max-width: 300px; margin: 10px 0 0; font-size: 15px; line-height: 1.35; overflow-wrap: anywhere; }
 
-.media-section { padding: 150px 0; background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.media-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 8vw; align-items: start; }
-.media-grid h2 { max-width: 760px; margin: 34px 0 0; font-size: clamp(46px, 5vw, 78px); line-height: .98; font-weight: 500; letter-spacing: -.05em; overflow-wrap: anywhere; }
-.media-count { display: inline-flex; align-items: baseline; gap: 12px; margin: 34px 0 0; padding-top: 18px; border-top: 1px solid var(--line); }
-.media-count strong { font-size: clamp(34px, 4vw, 64px); line-height: 1; font-weight: 500; letter-spacing: -.06em; }
-.media-count span { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(16,24,32,.58); }
-.media-links { display: grid; gap: 0; }
-.media-links a { display: grid; grid-template-columns: 140px 1fr; align-items: baseline; gap: 24px; border-top: 1px solid var(--line); padding: 22px 0; }
-.media-links a:last-child { border-bottom: 1px solid var(--line); }
-.media-links span { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(16,24,32,.58); }
-.media-links strong { font-size: clamp(24px, 2.6vw, 40px); font-weight: 500; letter-spacing: -.03em; }
+.media-section { overflow: hidden; padding: 150px 0; background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.media-heading { display: flex; align-items: end; justify-content: space-between; gap: 40px; }
+.media-heading h2 { max-width: 760px; margin: 34px 0 0; font-size: clamp(46px, 5vw, 78px); line-height: .98; font-weight: 500; letter-spacing: -.05em; overflow-wrap: anywhere; }
+.media-track { display: flex; gap: 18px; width: max-content; margin-top: 78px; padding: 0 max(24px, calc((100vw - 1380px) / 2)); }
+.media-card { display: flex; width: min(420px, 31vw); min-height: 430px; flex: none; flex-direction: column; justify-content: space-between; padding: 26px; color: white; background: var(--ink); transition: transform .35s cubic-bezier(.16,1,.3,1); }
+.media-card:hover { transform: translateY(-10px); }
+.media-card--blue { background: var(--blue); }
+.media-card--acid { color: var(--ink); background: var(--acid); }
+.media-card-index, .media-card-kind, .media-card-source, .media-card-bottom { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.media-card-kind { margin: 0 0 14px; opacity: .65; }
+.media-card-source { max-width: 270px; margin: 0; opacity: .7; line-height: 1.4; }
+.media-card h3 { max-width: 330px; margin: 20px 0 0; font-size: clamp(27px, 2.55vw, 42px); font-weight: 500; line-height: 1.03; letter-spacing: -.04em; overflow-wrap: anywhere; }
+.media-card-bottom { display: flex; justify-content: space-between; gap: 14px; border-top: 1px solid currentColor; padding-top: 16px; }
 
 .science-section { display: grid; min-height: 100svh; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 8vw; padding-block: 150px; background: var(--paper); }
 .science-copy { padding-top: 140px; }
@@ -125,12 +127,16 @@ main > section, main > footer { scroll-snap-align: start; scroll-snap-stop: alwa
 @media (max-width: 900px) {
   .page-shell { width: min(100% - 32px, 1380px); }
   .site-header { height: 64px; grid-template-columns: 1fr auto; padding: 0 16px; }
-  .site-header nav { position: fixed; inset: 0; z-index: 170; display: flex; flex-direction: column; justify-content: center; gap: 28px; padding: 70px 24px; color: var(--cream); background: var(--ink); opacity: 0; pointer-events: none; transition: opacity .3s ease; }
+  /* backdrop-filter creates a containing block for the full-screen menu on iOS. */
+  .site-header.is-scrolled { backdrop-filter: none; }
+  .site-header nav { position: fixed; inset: 0; z-index: 1; display: flex; flex-direction: column; justify-content: center; gap: 28px; padding: 70px 24px; color: var(--cream); background: var(--ink); opacity: 0; pointer-events: none; transition: opacity .3s ease; }
   .site-header nav a { font-size: 38px; font-weight: 500; letter-spacing: 0; overflow-wrap: anywhere; }
   .site-header.menu-open nav { opacity: 1; pointer-events: auto; }
   .site-header.menu-open { color: white; background: transparent; }
   .header-contact { display: none; }
-  .menu-button { display: flex; position: relative; z-index: 190; width: 40px; height: 40px; flex-direction: column; align-items: center; justify-content: center; gap: 7px; border: 0; color: inherit; background: none; }
+  .menu-button { display: flex; position: relative; z-index: 2; width: 44px; height: 44px; flex-direction: column; align-items: center; justify-content: center; gap: 7px; border: 1px solid currentColor; border-radius: 50%; color: inherit; background: rgba(7,15,24,.12); box-shadow: 0 4px 18px rgba(7,15,24,.1); }
+  .site-header.is-scrolled .menu-button { background: rgba(250,248,242,.72); }
+  .site-header.menu-open .menu-button { color: var(--cream); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.55); }
   .menu-button span { width: 21px; height: 1px; background: currentColor; transition: transform .3s ease; }
   .menu-open .menu-button span:first-child { transform: translateY(4px) rotate(45deg); }
   .menu-open .menu-button span:last-child { transform: translateY(-4px) rotate(-45deg); }
@@ -155,16 +161,20 @@ main > section, main > footer { scroll-snap-align: start; scroll-snap-stop: alwa
   .proofs-heading { grid-template-columns: 1fr; }
   .proofs-heading h2 { margin-top: 25px; }
   .proofs-heading > p:last-child { max-width: 430px; }
-  .proofs-track { display: grid; animation: none; gap: 28px; overflow: visible; width: 100%; max-width: 100%; margin-top: 64px; padding: 0; scroll-snap-type: none; touch-action: auto; }
-  .proofs-track:active { cursor: default; }
-  .proof-card { width: 100%; scroll-snap-align: none; }
-  .proof-card:nth-child(even) { margin-top: 0; }
+  .proofs-hint { display: inline-flex; gap: 8px; align-items: center; margin: 32px 0 0; color: var(--blue); font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+  .proofs-hint span { font-size: 18px; font-weight: 400; line-height: .6; }
+  .proofs-track { display: flex; gap: 16px; width: 100%; max-width: none; margin-top: 52px; padding: 0 16vw 18px 24px; overflow-x: auto; overflow-y: hidden; overscroll-behavior-inline: contain; scroll-snap-type: x mandatory; scroll-padding-left: 24px; scrollbar-width: none; animation: none; touch-action: pan-x pan-y; -webkit-overflow-scrolling: touch; }
+  .proofs-track::-webkit-scrollbar { display: none; }
+  .proofs-track:active { cursor: grabbing; }
+  .proof-card { width: min(76vw, 320px); scroll-snap-align: start; scroll-snap-stop: always; }
+  .proof-card:nth-child(even) { margin-top: 28px; }
   .media-section { padding: 110px 0; }
-  .media-grid { grid-template-columns: 1fr; gap: 40px; }
-  .media-grid h2 { margin-top: 24px; max-width: 100%; }
-  .media-count { margin-top: 24px; }
-  .media-links a { grid-template-columns: 1fr; gap: 10px; }
-  .media-links strong { font-size: 22px; }
+  .media-heading { display: block; }
+  .media-heading h2 { margin-top: 24px; max-width: 100%; }
+  .media-track { gap: 14px; width: 100%; margin-top: 48px; padding: 0 16vw 18px 24px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: 24px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .media-track::-webkit-scrollbar { display: none; }
+  .media-card { width: min(78vw, 350px); min-height: 390px; padding: 22px; scroll-snap-align: start; scroll-snap-stop: always; }
+  .media-card h3 { font-size: 28px; }
   .science-copy { padding-top: 0; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-links { margin-top: 80px; min-width: 0; }
@@ -190,10 +200,10 @@ main > section, main > footer { scroll-snap-align: start; scroll-snap-stop: alwa
   .award-section { min-height: 92svh; }
   .award-copy > p:last-child { max-width: 100%; }
   .proofs-section { padding-block: 110px; }
-  .proof-card { width: 100%; }
-  .media-grid h2 { font-size: 39px; }
-  .media-count strong { font-size: 34px; }
-  .media-links strong { font-size: 20px; }
+  .proof-card { width: 76vw; }
+  .media-heading h2 { font-size: 39px; }
+  .media-card { width: 78vw; min-height: 350px; }
+  .media-card h3 { font-size: 25px; }
   .science-copy p { font-size: 18px; letter-spacing: 0; }
   .site-footer { min-height: 70svh; }
   .footer-links a { align-items: flex-start; font-size: 20px; line-height: 1.15; }

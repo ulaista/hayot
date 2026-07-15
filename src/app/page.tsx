@@ -23,6 +23,57 @@ type Proof = {
   image: StaticImageData;
 };
 
+const mediaItems = [
+  {
+    kind: "СМИ",
+    source: "Министерство горнодобывающей промышленности и геологии",
+    date: "29 июня 2026",
+    title: "Молодых специалистов отрасли отметили государственными наградами",
+    href: "https://gov.uz/oz/mingeo/news/view/185205",
+    tone: "blue",
+  },
+  {
+    kind: "СМИ",
+    source: "Kursiv Uzbekistan",
+    date: "29 июня 2026",
+    title: "Опубликован список лауреатов государственной премии «Mard o‘g‘lon»",
+    href: "https://uz.kursiv.media/uz/2026-06-29/mard-oglon-davlat-mukofotining-2026-yilgi-goliblari-elon-qilindi/",
+    tone: "ink",
+  },
+  {
+    kind: "СМИ",
+    source: "Talaba Edu",
+    date: "29 июня 2026",
+    title: "Государственные награды для активной молодёжи Узбекистана",
+    href: "https://talaba-edu.uz/uz/post/478/",
+    tone: "acid",
+  },
+  {
+    kind: "Научная статья",
+    source: "E3S Web of Conferences · 2024",
+    date: "DOI: 10.1051/e3sconf/202454808008",
+    title: "Investigation of the biodegradation of polyvinyl chloride using modified rice starch",
+    href: "https://www.researchgate.net/publication/382214076_Investigation_of_the_biodegradation_of_polyvinyl_chloride_using_modified_rice_starch",
+    tone: "paper",
+  },
+  {
+    kind: "Научная статья",
+    source: "Universum: технические науки · 2025",
+    date: "27 мая 2025",
+    title: "Влияние модифицированного крахмала на водопоглощение биоразлагаемых композитов",
+    href: "https://7universum.com/ru/nature/archive/item/20254",
+    tone: "blue",
+  },
+  {
+    kind: "Научная статья",
+    source: "Universum: технические науки · 2025",
+    date: "29 мая 2025",
+    title: "Термическая стабильность биоразлагаемых композитов на основе полиэтилена",
+    href: "https://7universum.com/ru/nature/archive/item/20280",
+    tone: "ink",
+  },
+] as const;
+
 const milestones = [
   {
     years: "2014—2016",
@@ -238,10 +289,11 @@ export default function Home() {
           <p className="eyebrow">Документы и результаты по достижениям</p>
           <h2>Факты говорят<br />точнее громких слов.</h2>
           <p>Каждый документ — отдельный этап: олимпиада, исследование, стипендия или инженерная задача, за которой стоит конкретная работа и конкретный результат.</p>
+          <p className="proofs-hint" aria-hidden="true"><span>←</span> Листайте достижения <span>→</span></p>
         </div>
         <div
           className="proofs-track"
-          aria-label="Документы о достижениях"
+          aria-label="Документы о достижениях. Листайте вправо или влево"
           tabIndex={0}
           onKeyDown={(event) => {
             if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
@@ -272,27 +324,33 @@ export default function Home() {
       </section>
 
       <section id="media" className="media-section">
-        <div className="page-shell media-grid">
+        <div className="page-shell media-heading">
           <motion.div variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.8 }}>
             <p className="eyebrow">СМИ обо мне</p>
-            <h2>Площадки, где я делюсь проектами и новостями.</h2>
-            <p className="media-count"><strong>3</strong><span>материала</span></p>
-          </motion.div>
-          <motion.div className="media-links" variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.45 }} transition={{ delay: 0.12, duration: 0.8 }}>
-            <a href="https://t.me/Istamov_Hayot" target="_blank" rel="noreferrer">
-              <span>Telegram</span>
-              <strong>@Istamov_Hayot</strong>
-            </a>
-            <a href="https://www.instagram.com/istamov_hayot" target="_blank" rel="noreferrer">
-              <span>Instagram</span>
-              <strong>@istamov_hayot</strong>
-            </a>
-            <a href="https://youtube.com/@hayot_istamov?feature=shared" target="_blank" rel="noreferrer">
-              <span>YouTube</span>
-              <strong>Hayot Istamov</strong>
-            </a>
+            <h2>СМИ и научные<br />публикации.</h2>
           </motion.div>
         </div>
+        <motion.div className="media-track" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
+          {mediaItems.map((item, index) => (
+            <motion.a
+              key={item.href}
+              className={`media-card media-card--${item.tone}`}
+              href={item.href}
+              target="_blank"
+              rel="noreferrer"
+              variants={reveal}
+              transition={{ delay: index * 0.08, duration: 0.7 }}
+            >
+              <span className="media-card-index">0{index + 1}</span>
+              <div>
+                <p className="media-card-kind">{item.kind}</p>
+                <p className="media-card-source">{item.source}</p>
+                <h3>{item.title}</h3>
+              </div>
+              <div className="media-card-bottom"><span>{item.date}</span><span>Открыть ↗</span></div>
+            </motion.a>
+          ))}
+        </motion.div>
       </section>
 
       <section id="science" className="science-section page-shell">

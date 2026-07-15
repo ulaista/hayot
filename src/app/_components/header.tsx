@@ -30,17 +30,14 @@ export default function Header() {
   return (
     <header className={`site-header ${scrolled ? "is-scrolled" : ""} ${open ? "menu-open" : ""}`}>
       <a className="site-logo" href="#top" onClick={() => setOpen(false)} aria-label="Хаёт Истамов — на главную">HI<span>·</span></a>
-      <nav aria-label="Основная навигация">
+      <nav id="main-navigation" aria-label="Основная навигация">
         {links.map(([label, href]) => <a key={href} href={href} onClick={() => setOpen(false)}>{label}</a>)}
       </nav>
       <button
         className="menu-button"
         type="button"
         onClick={toggleMenu}
-        onTouchStart={(event) => {
-          event.preventDefault();
-          toggleMenu();
-        }}
+        aria-controls="main-navigation"
         aria-expanded={open}
         aria-label={open ? "Закрыть меню" : "Открыть меню"}
       >
