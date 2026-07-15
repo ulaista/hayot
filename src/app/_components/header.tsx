@@ -6,7 +6,7 @@ const links = [
   ["О работе", "#story"],
   ["Путь", "#path"],
   ["Достижения", "#proofs"],
-  ["СМИ", "#media"],
+  ["СМИ обо мне", "#media"],
 ] as const;
 
 export default function Header() {

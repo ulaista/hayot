@@ -25,7 +25,7 @@ type Proof = {
 
 const mediaItems = [
   {
-    kind: "СМИ",
+    kind: "СМИ обо мне",
     source: "Министерство горнодобывающей промышленности и геологии",
     date: "29 июня 2026",
     title: "Молодых специалистов отрасли отметили государственными наградами",
@@ -33,7 +33,7 @@ const mediaItems = [
     tone: "blue",
   },
   {
-    kind: "СМИ",
+    kind: "СМИ обо мне",
     source: "Kursiv Uzbekistan",
     date: "29 июня 2026",
     title: "Опубликован список лауреатов государственной премии «Mard o‘g‘lon»",
@@ -41,7 +41,7 @@ const mediaItems = [
     tone: "ink",
   },
   {
-    kind: "СМИ",
+    kind: "СМИ обо мне",
     source: "Talaba Edu",
     date: "29 июня 2026",
     title: "Государственные награды для активной молодёжи Узбекистана",
@@ -79,7 +79,7 @@ const milestones = [
     years: "2014—2016",
     label: "Основа",
     title: "Химия стала моей системой мышления.",
-    text: "Начал с побед на олимпиадах в Навои и Ташкенте. Затем — три призовых результата на Всерос по общей и неорганической химии, включая первое место в лабораторном этапе.",
+    text: "Начал с побед на олимпиадах в Навои и Ташкенте. Затем — три призовых результата на Всероссийской студенческой олимпиаде по общей и неорганической химии, включая первое место в лабораторном этапе.",
   },
   {
     years: "2016—2018",
@@ -102,16 +102,16 @@ const milestones = [
 ];
 
 const proofs: Proof[] = [
-  { year: "2015", place: "Ташкент", title: "I место на международной олимпиаде «Будущее большой химии»", image: chemistryDiploma },
-  { year: "2016", place: "2016", title: "Призовые места на Всерос по общей и неорганической химии", image: chemistryDiplomaTwo },
-  { year: "2017", place: "Москва · Сочи", title: "XIX Всемирный фестиваль молодёжи и студентов", image: worldFestival },
-  { year: "2018", place: "2018", title: "Вклад в научную и студенческую работу университета", image: gratitude },
-  { year: "2019", place: "Москва", title: "Победа в 24-часовом Chain Reaction Hack", image: chainReaction },
-  { year: "2019", place: "2019", title: "Победа в инженерном кейс-чемпионате СИБУРа", image: caseWinner },
-  { year: "2019", place: "Новомосковск", title: "P&G Unsolvable Quest — технический кейс-чемпионат", image: pgCase },
-  { year: "2019", place: "2019", title: "Государственная стипендия Республики Татарстан", image: scholarship },
-  { year: "2020", place: "Open Doors", title: "Победитель международной олимпиады по химии", image: olympiad },
-  { year: "2019", place: "2019", title: "Благодарность за развитие студенческих проектов и олимпиад", image: certificate },
+  { year: "2016", place: "Казань", title: "III место в III туре Всероссийской студенческой олимпиады «Общая и неорганическая химия»", image: chemistryDiploma },
+  { year: "2016", place: "Казань", title: "II место в командном зачёте Всероссийской студенческой олимпиады «Общая и неорганическая химия»", image: chemistryDiplomaTwo },
+  { year: "2017", place: "Москва · Сочи", title: "Участие в XIX Всемирном фестивале молодёжи и студентов", image: worldFestival },
+  { year: "2019", place: "Казань", title: "Специальная государственная стипендия Республики Татарстан", image: gratitude },
+  { year: "2019", place: "Москва", title: "Диплом победителя Chain Reaction Hack 2019", image: chainReaction },
+  { year: "2019", place: "Казань", title: "I место в технологической игре СИБУРа «Точка отсчёта»", image: caseWinner },
+  { year: "2019", place: "Новомосковск", title: "Успешное участие в техническом кейс-чемпионате P&G Unsolvable Quest", image: pgCase },
+  { year: "2018", place: "Казань", title: "Благодарственное письмо спикеру форума YouLead’18", image: scholarship },
+  { year: "2016", place: "Москва", title: "III место в заключительном этапе Всероссийской студенческой олимпиады", image: olympiad },
+  { year: "2019", place: "Институт полимеров", title: "Благодарственное письмо за вклад в развитие студенческого актива Института полимеров", image: certificate },
 ];
 
 const reveal = {
@@ -327,7 +327,7 @@ export default function Home() {
         <div className="page-shell media-heading">
           <motion.div variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.8 }}>
             <p className="eyebrow">СМИ обо мне</p>
-            <h2>СМИ и научные<br />публикации.</h2>
+            <h2>СМИ обо мне и научные<br />публикации.</h2>
           </motion.div>
         </div>
         <motion.div className="media-track" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
