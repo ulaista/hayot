@@ -6,11 +6,14 @@ const links = [
   ["О работе", "#story"],
   ["Путь", "#path"],
   ["Достижения", "#proofs"],
+  ["СМИ", "#media"],
 ] as const;
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const toggleMenu = () => setOpen((value) => !value);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 48);
@@ -30,7 +33,17 @@ export default function Header() {
       <nav aria-label="Основная навигация">
         {links.map(([label, href]) => <a key={href} href={href} onClick={() => setOpen(false)}>{label}</a>)}
       </nav>
-      <button className="menu-button" type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-label={open ? "Закрыть меню" : "Открыть меню"}>
+      <button
+        className="menu-button"
+        type="button"
+        onClick={toggleMenu}
+        onTouchStart={(event) => {
+          event.preventDefault();
+          toggleMenu();
+        }}
+        aria-expanded={open}
+        aria-label={open ? "Закрыть меню" : "Открыть меню"}
+      >
         <span /><span />
       </button>
       <a className="header-contact" href="#science">Исследования <span>↘</span></a>

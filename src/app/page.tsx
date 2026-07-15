@@ -28,39 +28,39 @@ const milestones = [
     years: "2014—2016",
     label: "Основа",
     title: "Химия стала моей системой мышления.",
-    text: "Начал с побед на олимпиадах в Навои и Ташкенте. Затем — три призовых результата на всероссийской олимпиаде по общей и неорганической химии в Казани, включая первое место в лабораторном этапе.",
+    text: "Начал с побед на олимпиадах в Навои и Ташкенте. Затем — три призовых результата на Всерос по общей и неорганической химии, включая первое место в лабораторном этапе.",
   },
   {
     years: "2016—2018",
     label: "Международный опыт",
     title: "Учился там, где теория встречается с индустрией.",
-    text: "Получил стипендии Правительства и Президента Российской Федерации, участвовал во Всемирном фестивале молодёжи и студентов и выступал на международных научных конференциях.",
+    text: "Получил стипендии Правительства Российской Федерации, Президента Российской Федерации и Республики Татарстан, а также участвовал во Всемирном фестивале молодёжи и студентов и выступал на международных научных конференциях.",
   },
   {
     years: "2018—2020",
     label: "Практика",
     title: "Проверял знания на реальных задачах.",
-    text: "Вошёл в финал Unilever Chain Reaction, победил в 24-часовом Chain Reaction Hack и инженерном кейс-чемпионате СИБУРа. В 2020 году выиграл олимпиаду Open Doors по химии.",
+    text: "Вошёл в финал Unilever Chain Reaction, победил в 24-часовом Chain Reaction Hack и в кейс-чемпионатах по химии, науке материалов и бизнес-менеджменту. В 2020 году выиграл олимпиаду Open Doors по химии.",
   },
   {
     years: "2024—2026",
     label: "Сегодня",
     title: "Исследования, преподавание и ответственность.",
-    text: "Подтвердил английский на уровне C1, защитил PhD по биоразлагаемым композиционным материалам. Работаю старшим преподавателем и веду студентов в исследования, конференции и конкурсы.",
+    text: "Подтвердил английский на уровне C1, защитил PhD по биоразлагаемым полимерным композиционным материалам. Работаю на кафедре химических технологий и веду студентов в исследования, конференции и конкурсы.",
   },
 ];
 
 const proofs: Proof[] = [
   { year: "2015", place: "Ташкент", title: "I место на международной олимпиаде «Будущее большой химии»", image: chemistryDiploma },
-  { year: "2016", place: "Казань", title: "Призовые места на олимпиаде по общей и неорганической химии", image: chemistryDiplomaTwo },
+  { year: "2016", place: "2016", title: "Призовые места на Всерос по общей и неорганической химии", image: chemistryDiplomaTwo },
   { year: "2017", place: "Москва · Сочи", title: "XIX Всемирный фестиваль молодёжи и студентов", image: worldFestival },
-  { year: "2018", place: "Казань", title: "Вклад в научную и студенческую работу университета", image: gratitude },
+  { year: "2018", place: "2018", title: "Вклад в научную и студенческую работу университета", image: gratitude },
   { year: "2019", place: "Москва", title: "Победа в 24-часовом Chain Reaction Hack", image: chainReaction },
-  { year: "2019", place: "Казань", title: "Победа в инженерном кейс-чемпионате СИБУРа", image: caseWinner },
+  { year: "2019", place: "2019", title: "Победа в инженерном кейс-чемпионате СИБУРа", image: caseWinner },
   { year: "2019", place: "Новомосковск", title: "P&G Unsolvable Quest — технический кейс-чемпионат", image: pgCase },
-  { year: "2019", place: "Казань", title: "Государственная стипендия Республики Татарстан", image: scholarship },
+  { year: "2019", place: "2019", title: "Государственная стипендия Республики Татарстан", image: scholarship },
   { year: "2020", place: "Open Doors", title: "Победитель международной олимпиады по химии", image: olympiad },
-  { year: "2019", place: "Казань", title: "Благодарность за развитие студенческого сообщества", image: certificate },
+  { year: "2019", place: "2019", title: "Благодарность за развитие студенческих проектов и олимпиад", image: certificate },
 ];
 
 const reveal = {
@@ -68,7 +68,7 @@ const reveal = {
   visible: { opacity: 1, y: 0 },
 };
 
-const sectionIds = ["top", "story", "path", "award", "proofs", "science", "contact"];
+const sectionIds = ["top", "story", "path", "award", "proofs", "media", "science", "contact"];
 
 function ArrowDown() {
   return (
@@ -186,7 +186,7 @@ export default function Home() {
         <div className="hero-shade" />
         <div className="hero-content page-shell">
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15, duration: 0.8 }} className="eyebrow hero-eyebrow">
-            Учёный · преподаватель · инженер
+            Учёный · преподаватель · химический инженер
           </motion.p>
           <motion.h1 initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
             Хаёт<br />Истамов
@@ -200,23 +200,19 @@ export default function Home() {
 
       <section id="story" className="intro-section page-shell">
         <motion.div variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.35 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-          <p className="eyebrow">О работе</p>
+          <p className="eyebrow">О моей работе</p>
           <h2>Превращаю сложные знания<br />в понятные решения.</h2>
         </motion.div>
         <motion.div className="intro-copy" variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }} transition={{ delay: 0.12, duration: 0.8 }}>
           <p>Исследую полимерные материалы и преподаю химическую технологию. В работе для меня одинаково важны точность эксперимента, ясность объяснения и польза результата.</p>
-          <div className="stat-row">
-            <div><strong>26</strong><span>достижений<br />в портфолио</span></div>
-            <div><strong>PhD</strong><span>технические<br />науки</span></div>
-            <div><strong>C1</strong><span>английский<br />язык</span></div>
-          </div>
+          <p>Работаю с полимерными и композиционными материалами, веду студентов через исследования, конференции и практические задачи, а также развиваю научную и учебную работу в университете.</p>
         </motion.div>
       </section>
 
       <section id="path" className="path-section">
         <div className="page-shell path-grid">
           <div className="path-heading">
-            <p className="eyebrow">Путь · 2014—2026</p>
+            <p className="eyebrow">Профессиональный путь · 2014—2026</p>
             <h2>Не коллекция наград.<br />Последовательность решений.</h2>
           </div>
           <div className="timeline-list">
@@ -232,16 +228,16 @@ export default function Home() {
         <div className="award-overlay" />
         <motion.div className="award-copy page-shell" variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.45 }} transition={{ duration: 0.9 }}>
           <p className="eyebrow">Государственное признание</p>
-          <h2>Награда — не финальная точка.<br />Это масштаб ответственности.</h2>
+          <h2>Награда — не финальная точка.<br />Это начало масштабных проектов.</h2>
           <p>Церемония вручения государственной награды Президентом Республики Узбекистан.</p>
         </motion.div>
       </section>
 
       <section id="proofs" className="proofs-section">
         <div className="page-shell proofs-heading">
-          <p className="eyebrow">Документы и результаты</p>
+          <p className="eyebrow">Документы и результаты по достижениям</p>
           <h2>Факты говорят<br />точнее громких слов.</h2>
-          <p>Каждый документ — отдельный этап: олимпиада, исследование, стипендия или инженерная задача.</p>
+          <p>Каждый документ — отдельный этап: олимпиада, исследование, стипендия или инженерная задача, за которой стоит конкретная работа и конкретный результат.</p>
         </div>
         <div
           className="proofs-track"
@@ -275,13 +271,37 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="media" className="media-section">
+        <div className="page-shell media-grid">
+          <motion.div variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.8 }}>
+            <p className="eyebrow">СМИ обо мне</p>
+            <h2>Площадки, где я делюсь проектами и новостями.</h2>
+            <p className="media-count"><strong>3</strong><span>материала</span></p>
+          </motion.div>
+          <motion.div className="media-links" variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.45 }} transition={{ delay: 0.12, duration: 0.8 }}>
+            <a href="https://t.me/Istamov_Hayot" target="_blank" rel="noreferrer">
+              <span>Telegram</span>
+              <strong>@Istamov_Hayot</strong>
+            </a>
+            <a href="https://www.instagram.com/istamov_hayot" target="_blank" rel="noreferrer">
+              <span>Instagram</span>
+              <strong>@istamov_hayot</strong>
+            </a>
+            <a href="https://youtube.com/@hayot_istamov?feature=shared" target="_blank" rel="noreferrer">
+              <span>YouTube</span>
+              <strong>Hayot Istamov</strong>
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
       <section id="science" className="science-section page-shell">
         <motion.div variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.8 }}>
           <p className="eyebrow">Исследование · 2025</p>
-          <h2>Материалы,<br />которые умеют исчезать.</h2>
+          <h2>Материалы,<br />снижающие экологическую нагрузку на природу.</h2>
         </motion.div>
         <motion.div className="science-copy" variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.4 }} transition={{ delay: 0.12, duration: 0.8 }}>
-          <p>В диссертации исследовал получение биоразлагаемых композиционных материалов на основе синтетических полимеров.</p>
+          <p>В диссертации исследовал получение биоразлагаемых композиционных материалов на основе синтетических полимеров, которые помогают снижать экологическую нагрузку на природу.</p>
           <p>Сегодня продолжаю научную работу вместе со студентами — от первой гипотезы до конференции и практического результата.</p>
         </motion.div>
       </section>
@@ -290,6 +310,8 @@ export default function Home() {
         <div className="page-shell footer-grid">
           <div><p className="eyebrow">Связь</p><h2>Продолжим<br />разговор.</h2></div>
           <div className="footer-links">
+            <a href="https://t.me/Istamov_Hayot" target="_blank" rel="noreferrer">Telegram <span>@Istamov_Hayot ↗</span></a>
+            <a href="https://www.instagram.com/istamov_hayot" target="_blank" rel="noreferrer">Instagram <span>@istamov_hayot ↗</span></a>
             <a href="https://youtube.com/@hayot_istamov?feature=shared" target="_blank" rel="noreferrer">YouTube <span>↗</span></a>
             <a href="mailto:hayot.istamov@gmail.com">Email <span>↗</span></a>
           </div>
