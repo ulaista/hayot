@@ -39,8 +39,9 @@ main > section, main > footer { scroll-snap-align: start; scroll-snap-stop: alwa
 
 .hero-section { position: relative; min-height: 100svh; overflow: hidden; color: white; background: #0b1725; }
 .hero-image, .hero-shade { position: absolute; inset: 0; }
-.hero-image img { object-fit: cover; object-position: center 32%; }
-.hero-shade { background: linear-gradient(90deg, rgba(7,15,24,.88) 0%, rgba(7,15,24,.48) 44%, rgba(7,15,24,.03) 72%), linear-gradient(0deg, rgba(7,15,24,.75) 0%, transparent 46%); }
+.hero-image { inset: -3%; transform-origin: center; }
+.hero-image img { object-fit: cover; object-position: 48% 52%; filter: saturate(1.08) contrast(1.06); }
+.hero-shade { background: radial-gradient(circle at 68% 34%, rgba(255,255,255,.1), transparent 28%), linear-gradient(90deg, rgba(7,15,24,.88) 0%, rgba(7,15,24,.58) 42%, rgba(7,15,24,.2) 74%), linear-gradient(180deg, rgba(7,15,24,.28) 0%, transparent 38%), linear-gradient(0deg, rgba(7,15,24,.94) 0%, rgba(7,15,24,.42) 50%, transparent 78%); }
 .hero-content { position: relative; z-index: 2; display: flex; min-height: 100svh; flex-direction: column; justify-content: flex-end; padding: 120px 0 46px; }
 .hero-eyebrow { position: absolute; top: 124px; left: 0; }
 .hero-content h1 { max-width: 100%; margin: 0 0 62px; font-size: clamp(74px, 12.5vw, 190px); line-height: .76; font-weight: 500; letter-spacing: -.075em; overflow-wrap: anywhere; }
@@ -140,8 +141,10 @@ main > section, main > footer { scroll-snap-align: start; scroll-snap-stop: alwa
   .menu-button span { width: 21px; height: 1px; background: currentColor; transition: transform .3s ease; }
   .menu-open .menu-button span:first-child { transform: translateY(4px) rotate(45deg); }
   .menu-open .menu-button span:last-child { transform: translateY(-4px) rotate(-45deg); }
-  .hero-image img { object-position: 61% center; }
-  .hero-shade { background: linear-gradient(0deg, rgba(7,15,24,.94) 0%, rgba(7,15,24,.15) 78%); }
+  .hero-section { min-height: 100dvh; }
+  .hero-image { inset: 0; transform: none !important; }
+  .hero-image img { object-position: 24% 50%; }
+  .hero-shade { background: linear-gradient(180deg, rgba(7,15,24,.66) 0%, rgba(7,15,24,.18) 30%, rgba(7,15,24,.28) 58%, rgba(7,15,24,.97) 100%), linear-gradient(90deg, rgba(7,15,24,.68) 0%, rgba(7,15,24,.18) 52%, rgba(7,15,24,.32) 100%); }
   .hero-content { padding-bottom: 28px; }
   .hero-eyebrow { top: 95px; }
   .hero-content h1 { margin-bottom: 40px; font-size: 82px; letter-spacing: -.055em; }

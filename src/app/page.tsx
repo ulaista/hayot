@@ -4,6 +4,7 @@ import Image, { type StaticImageData } from "next/image";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
+import heroBackground from "~/img/hero-bg.jpg";
 import awardPhoto from "~/img/state-award.jpg";
 import chainReaction from "~/img/portfolio-1.jpg";
 import scholarship from "~/img/portfolio-2.jpg";
@@ -24,6 +25,14 @@ type Proof = {
 };
 
 const mediaItems = [
+  {
+    kind: "Официальный источник",
+    source: "Президент Республики Узбекистан",
+    date: "29 июня 2026",
+    title: "О присуждении Государственной премии «Мард ўғлон»",
+    href: "https://president.uz/ru/lists/view/9361",
+    tone: "ink",
+  },
   {
     kind: "СМИ обо мне",
     source: "Министерство горнодобывающей промышленности и геологии",
@@ -47,30 +56,6 @@ const mediaItems = [
     title: "Государственные награды для активной молодёжи Узбекистана",
     href: "https://talaba-edu.uz/uz/post/478/",
     tone: "acid",
-  },
-  {
-    kind: "Научная статья",
-    source: "E3S Web of Conferences · 2024",
-    date: "DOI: 10.1051/e3sconf/202454808008",
-    title: "Investigation of the biodegradation of polyvinyl chloride using modified rice starch",
-    href: "https://www.researchgate.net/publication/382214076_Investigation_of_the_biodegradation_of_polyvinyl_chloride_using_modified_rice_starch",
-    tone: "paper",
-  },
-  {
-    kind: "Научная статья",
-    source: "Universum: технические науки · 2025",
-    date: "27 мая 2025",
-    title: "Влияние модифицированного крахмала на водопоглощение биоразлагаемых композитов",
-    href: "https://7universum.com/ru/nature/archive/item/20254",
-    tone: "blue",
-  },
-  {
-    kind: "Научная статья",
-    source: "Universum: технические науки · 2025",
-    date: "29 мая 2025",
-    title: "Термическая стабильность биоразлагаемых композитов на основе полиэтилена",
-    href: "https://7universum.com/ru/nature/archive/item/20280",
-    tone: "ink",
   },
 ] as const;
 
@@ -232,7 +217,7 @@ export default function Home() {
           className="hero-image"
           style={prefersReducedMotion ? undefined : { y: heroY, scale: heroScale }}
         >
-          <Image src={awardPhoto} alt="Хаёт Истамов на церемонии вручения государственной награды" fill priority sizes="100vw" />
+          <Image src={heroBackground} alt="Хаёт Истамов на фоне городского пейзажа" fill priority quality={95} sizes="100vw" />
         </motion.div>
         <div className="hero-shade" />
         <div className="hero-content page-shell">
@@ -327,7 +312,7 @@ export default function Home() {
         <div className="page-shell media-heading">
           <motion.div variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.8 }}>
             <p className="eyebrow">СМИ обо мне</p>
-            <h2>СМИ обо мне и научные<br />публикации.</h2>
+            <h2>СМИ обо мне.</h2>
           </motion.div>
         </div>
         <motion.div className="media-track" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
