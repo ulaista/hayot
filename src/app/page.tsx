@@ -280,6 +280,19 @@ export default function Home() {
           className="proofs-track"
           aria-label="Документы о достижениях. Листайте вправо или влево"
           tabIndex={0}
+          onWheel={(event) => {
+            const element = event.currentTarget;
+            const maxScrollLeft = element.scrollWidth - element.clientWidth;
+            if (maxScrollLeft <= 0) return;
+
+            const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+            const atStart = element.scrollLeft <= 0;
+            const atEnd = element.scrollLeft >= maxScrollLeft - 1;
+            if ((delta < 0 && atStart) || (delta > 0 && atEnd)) return;
+
+            event.preventDefault();
+            element.scrollLeft = Math.min(Math.max(element.scrollLeft + delta, 0), maxScrollLeft);
+          }}
           onKeyDown={(event) => {
             if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
             event.preventDefault();
