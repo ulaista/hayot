@@ -159,6 +159,7 @@ function TimelineCard({ item, index }: { item: (typeof milestones)[number]; inde
 export default function Home() {
   const heroRef = useRef<HTMLElement>(null);
   const awardRef = useRef<HTMLElement>(null);
+  const proofScrollTimeoutRef = useRef<number | null>(null);
   const prefersReducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
   const { scrollYProgress: heroProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
@@ -207,6 +208,13 @@ export default function Home() {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [prefersReducedMotion]);
+
+  useEffect(() => {
+    return () => {
+      if (proofScrollTimeoutRef.current) window.clearTimeout(proofScrollTimeoutRef.current);
+      document.documentElement.classList.remove("proofs-wheel-active");
+    };
+  }, []);
 
   return (
     <main>
@@ -286,12 +294,15 @@ export default function Home() {
             if (maxScrollLeft <= 0) return;
 
             const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
-            const atStart = element.scrollLeft <= 0;
-            const atEnd = element.scrollLeft >= maxScrollLeft - 1;
-            if ((delta < 0 && atStart) || (delta > 0 && atEnd)) return;
+            if (delta === 0) return;
 
             event.preventDefault();
             element.scrollLeft = Math.min(Math.max(element.scrollLeft + delta, 0), maxScrollLeft);
+            document.documentElement.classList.add("proofs-wheel-active");
+            if (proofScrollTimeoutRef.current) window.clearTimeout(proofScrollTimeoutRef.current);
+            proofScrollTimeoutRef.current = window.setTimeout(() => {
+              document.documentElement.classList.remove("proofs-wheel-active");
+            }, 260);
           }}
           onKeyDown={(event) => {
             if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
