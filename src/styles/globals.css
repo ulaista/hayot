@@ -163,8 +163,10 @@ main > section, main > footer { scroll-snap-align: start; scroll-snap-stop: alwa
   .timeline-card { grid-template-columns: 90px 1fr; }
   .timeline-card { transform: none !important; }
   .timeline-meta { grid-template-columns: 1fr; row-gap: 14px; column-gap: 0; }
-  .award-section { min-height: 100svh; }
-  .award-photo img { object-position: 57% center; }
+  .award-section { min-height: 100svh; background: #050d16; }
+  .award-photo { inset: 76px 0 auto; height: min(58svh, 520px); background: #050d16; }
+  .award-photo img { object-fit: contain; object-position: center top; }
+  .award-overlay { background: linear-gradient(180deg, rgba(5,13,22,.08) 0%, rgba(5,13,22,.18) 48%, rgba(5,13,22,.96) 100%); }
   .award-copy { padding-bottom: 40px; }
   .proofs-heading { grid-template-columns: 1fr; }
   .proofs-heading h2 { margin-top: 25px; }
@@ -206,6 +208,7 @@ main > section, main > footer { scroll-snap-align: start; scroll-snap-stop: alwa
   .timeline-card h3 { font-size: 32px; line-height: 1.06; letter-spacing: -.015em; }
   .timeline-copy { margin-top: 22px; font-size: 15px; line-height: 1.55; }
   .award-section { min-height: 92svh; }
+  .award-photo { top: 78px; height: 52svh; }
   .award-copy > p:last-child { max-width: 100%; }
   .proofs-section { padding-block: 110px; }
   .proof-card { width: 76vw; }
