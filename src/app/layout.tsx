@@ -7,7 +7,12 @@ import Header from "./_components/header";
 export const metadata: Metadata = {
   title: "Хаёт Истамов — учёный, преподаватель, инженер",
   description: "Научная работа, преподавание и достижения Хаёта Истамова в химической технологии.",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
